@@ -83,6 +83,12 @@ public class UserManager {
         System.out.printf( "| %s |   %s   |  %s  |     %s      |\n", "Mã SP", "Tên SP", "SỐ LƯỢNG", "GIÁ");
         System.out.println("|-------|------------|------------|--------------|");
         Cart cart = cartService.findCartByUserLogin();
+        if (cart == null){
+            System.out.println("|Giỏ hàng trống                                  |");
+            System.out.println("'------------------------------------------------'");
+
+            return;
+        }
         for (int idPro : cart.getProductCart().keySet()) {
             Products products = productService.findById(idPro);
             System.out.printf("|%4d   |     %-7s|     %-4d   |%12.2f  |\n",
